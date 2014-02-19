@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.0.3'
 gem 'sqlite3', '1.3.8'
+gem 'activerecord-import', '0.4.1'
 
 group :assets do
   gem 'sass-rails', '4.0.1'
