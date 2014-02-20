@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140219193733) do
+ActiveRecord::Schema.define(version: 20140219220336) do
 
   create_table "activities", force: true do |t|
     t.string   "activity_class"
@@ -32,6 +32,8 @@ ActiveRecord::Schema.define(version: 20140219193733) do
     t.datetime "updated_at"
   end
 
+  add_index "foursquares", ["timestamp"], name: "foursquare_timestamp_ix"
+
   create_table "scrobbles", force: true do |t|
     t.datetime "timestamp"
     t.string   "track"
@@ -45,6 +47,8 @@ ActiveRecord::Schema.define(version: 20140219193733) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "scrobbles", ["timestamp"], name: "scrobble_timestamp_ix"
 
   create_table "tweets", force: true do |t|
     t.text     "text"
@@ -60,5 +64,7 @@ ActiveRecord::Schema.define(version: 20140219193733) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "tweets", ["timestamp"], name: "tweets_timestamp_ix"
 
 end

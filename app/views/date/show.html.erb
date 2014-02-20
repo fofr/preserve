@@ -1,0 +1,24 @@
+<h1><%= @date.strftime('%-e %B %Y') %></h1>
+
+<%= link_to 'Previous', date_path(@date - 1)%> | <%= link_to 'Next', date_path(@date + 1)%>
+
+<h2>Tweets</h2>
+<ul>
+<% @tweets.each do |tweet| %>
+  <li><%= "#{tweet.timestamp.strftime('%-I:%M%P')} #{auto_link(tweet.text)}".html_safe %></li>
+<% end %>
+</ul>
+
+<h2>Checkins</h2>
+<ul>
+<% @checkins.each do |checkin| %>
+  <li><%= "#{checkin.timestamp.strftime('%-I:%M%P')} #{checkin.venue}"%></li>
+<% end %>
+</ul>
+
+<h2>Scrobbles</h2>
+<ul>
+<% @scrobbles.each do |scrobble| %>
+  <li><%= "#{scrobble.timestamp.strftime('%-I:%M%P')} #{scrobble.artist} — #{scrobble.track}"%></li>
+<% end %>
+</ul>
