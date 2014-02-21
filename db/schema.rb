@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140219220336) do
+ActiveRecord::Schema.define(version: 20140220195835) do
 
   create_table "activities", force: true do |t|
     t.string   "activity_class"
@@ -33,6 +33,16 @@ ActiveRecord::Schema.define(version: 20140219220336) do
   end
 
   add_index "foursquares", ["timestamp"], name: "foursquare_timestamp_ix", using: :btree
+
+  create_table "journals", force: true do |t|
+    t.text     "text"
+    t.string   "journal_id"
+    t.datetime "timestamp"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "journals", ["timestamp"], name: "journal_timestamp_ix", using: :btree
 
   create_table "scrobbles", force: true do |t|
     t.datetime "timestamp"

@@ -2,6 +2,12 @@
 
 <%= link_to 'Previous', date_path(@date - 1)%> | <%= link_to 'Next', date_path(@date + 1)%>
 
+<h2>Journal</h2>
+<% @journals.each do |journal| %>
+  <h3><%= "#{journal.timestamp.strftime('%-I:%M%P')}" %></h3>
+  <%= "#{auto_link(journal.text)}".html_safe %>
+<% end %>
+
 <h2>Tweets</h2>
 <ul>
 <% @tweets.each do |tweet| %>

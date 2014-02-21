@@ -16,7 +16,8 @@ class DateController < ApplicationController
     @scrobbles  = Scrobble.where(timestamp: range)
     @checkins   = Foursquare.where(timestamp: range)
     @tweets     = Tweet.where(timestamp: range)
-    
+    @journals   = Journal.where(timestamp: range)
+
   end
 
 end
