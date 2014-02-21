@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20140219220336) do
     t.datetime "updated_at"
   end
 
-  add_index "foursquares", ["timestamp"], name: "foursquare_timestamp_ix"
+  add_index "foursquares", ["timestamp"], name: "foursquare_timestamp_ix", using: :btree
 
   create_table "scrobbles", force: true do |t|
     t.datetime "timestamp"
@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 20140219220336) do
     t.datetime "updated_at"
   end
 
-  add_index "scrobbles", ["timestamp"], name: "scrobble_timestamp_ix"
+  add_index "scrobbles", ["timestamp"], name: "scrobble_timestamp_ix", using: :btree
 
   create_table "tweets", force: true do |t|
     t.text     "text"
@@ -65,6 +65,6 @@ ActiveRecord::Schema.define(version: 20140219220336) do
     t.datetime "updated_at"
   end
 
-  add_index "tweets", ["timestamp"], name: "tweets_timestamp_ix"
+  add_index "tweets", ["timestamp"], name: "tweets_timestamp_ix", using: :btree
 
 end
