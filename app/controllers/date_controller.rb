@@ -11,12 +11,13 @@ class DateController < ApplicationController
 
   def show
     @date = Date.parse(params[:id])
-    range = @date..@date+1
+    range = @date..(@date+1 - 1.second)
 
     @scrobbles  = Scrobble.where(timestamp: range)
     @checkins   = Foursquare.where(timestamp: range)
     @tweets     = Tweet.where(timestamp: range)
     @journals   = Journal.where(timestamp: range)
+    @movies     = Movie.where(timestamp: range)
 
   end
 

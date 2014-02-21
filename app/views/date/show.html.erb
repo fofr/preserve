@@ -15,6 +15,13 @@
 <% end %>
 </ul>
 
+<h2>Watched</h2>
+<ul>
+<% @movies.each do |m| %>
+  <li><%= "#{m[:title]} (#{m[:year]}), rated: #{m[:rating]}" %></li>
+<% end %>
+</ul>
+
 <h2>Checkins</h2>
 <ul>
 <% @checkins.each do |checkin| %>

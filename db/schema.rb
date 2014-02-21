@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140220195835) do
+ActiveRecord::Schema.define(version: 20140221180316) do
 
   create_table "activities", force: true do |t|
     t.string   "activity_class"
@@ -43,6 +43,18 @@ ActiveRecord::Schema.define(version: 20140220195835) do
   end
 
   add_index "journals", ["timestamp"], name: "journal_timestamp_ix", using: :btree
+
+  create_table "movies", force: true do |t|
+    t.string   "title"
+    t.integer  "rating"
+    t.string   "imdb_id"
+    t.datetime "timestamp"
+    t.integer  "year"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "movies", ["timestamp"], name: "movies_timestamp_ix", using: :btree
 
   create_table "scrobbles", force: true do |t|
     t.datetime "timestamp"

@@ -1,4 +1,3 @@
-require 'open-uri'
 namespace :import do
 
   desc "Import journal (day one) entries from markdown export"
