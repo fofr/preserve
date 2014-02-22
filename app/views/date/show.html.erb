@@ -1,37 +1,113 @@
-<h1><%= @date.strftime('%-e %B %Y') %></h1>
+<header class="text-center add-big-top-margin">
+  <h1><%= @date.strftime('%-e %B %Y') %></h1>
+  <nav>
+    <%= link_to 'Previous', date_path(@date - 1)%> | <%= link_to 'Next', date_path(@date + 1)%>
+  </nav>
+</header>
 
-<%= link_to 'Previous', date_path(@date - 1)%> | <%= link_to 'Next', date_path(@date + 1)%>
-
-<h2>Journal</h2>
-<% @journals.each do |journal| %>
-  <h3><%= "#{journal.timestamp.strftime('%-I:%M%P')}" %></h3>
-  <%= "#{auto_link(journal.text)}".html_safe %>
+<% if @journals.any? %>
+  <section class="add-big-top-margin">
+    <hr />
+    <% @journals.each do |journal| %>
+      <% if journal.timestamp.strftime('%-I:%M%P') != '12:00pm' %>
+        <h3><%= "#{journal.timestamp.strftime('%-I:%M%P')}" %></h3>
+      <% end %>
+      <div class="article-text">
+        <%= "#{auto_link(simple_format(journal.text))}".html_safe %>
+      </div>
+      <hr />
+    <% end %>
+  </section>
 <% end %>
 
-<h2>Tweets</h2>
-<ul>
-<% @tweets.each do |tweet| %>
-  <li><%= "#{tweet.timestamp.strftime('%-I:%M%P')} #{auto_link(tweet.text)}".html_safe %></li>
+<% if @tweets.any? %>
+  <h3 class="add-big-top-margin">Tweets</h3>
+  <table class="table table-bordered table-striped add-vertical-margins">
+    <thead>
+      <tr class="active">
+        <th class="time-column">Time</th>
+        <th>Tweet</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @tweets.each do |tweet| %>
+        <tr>
+          <td>
+            <%= tweet.timestamp.strftime('%-I:%M%P') %>
+          </td>
+          <td>
+            <%= auto_link(tweet.text).html_safe %>
+          </td>
+      <% end %>
+    </tbody>
+  </table>
 <% end %>
-</ul>
 
-<h2>Watched</h2>
-<ul>
-<% @movies.each do |m| %>
-  <li><%= "#{m[:title]} (#{m[:year]}), rated: #{m[:rating]}" %></li>
+<% if @movies.any? %>
+  <h3 class="add-big-top-margin">Watched</h3>
+  <table class="table table-bordered table-striped add-vertical-margins">
+    <thead>
+      <tr class="active">
+        <th>Title</th>
+        <th class="rating-column">Rating</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @movies.each do |movie| %>
+        <tr>
+          <td>
+            <%= link_to "#{movie.title} (#{movie.year})", movie.url %>
+          </td>
+          <td>
+            <%= movie.rating %>
+          </td>
+      <% end %>
+    </tbody>
+  </table>
 <% end %>
-</ul>
 
-<h2>Checkins</h2>
-<ul>
-<% @checkins.each do |checkin| %>
-  <li><%= "#{checkin.timestamp.strftime('%-I:%M%P')} #{checkin.venue}"%></li>
+<% if @checkins.any? %>
+  <h3 class="add-big-top-margin">Checkins</h3>
+  <table class="table table-bordered table-striped add-vertical-margins">
+    <thead>
+      <tr class="active">
+        <th class="time-column">Time</th>
+        <th>Checkin</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @checkins.each do |checkin| %>
+        <tr>
+          <td>
+            <%= checkin.timestamp.strftime('%-I:%M%P') %>
+          </td>
+          <td>
+            <%= link_to checkin.venue, checkin.url %>
+          </td>
+      <% end %>
+    </tbody>
+  </table>
 <% end %>
-</ul>
 
-<h2>Scrobbles</h2>
-<ul>
-<% @scrobbles.each do |scrobble| %>
-  <li><%= "#{scrobble.timestamp.strftime('%-I:%M%P')} #{scrobble.artist} — #{scrobble.track}"%></li>
+<% if @scrobbles.any? %>
+  <h3 class="add-big-top-margin">Scrobbles</h3>
+  <table class="table table-bordered table-striped add-vertical-margins">
+    <thead>
+      <tr class="active">
+        <th class="time-column">Time</th>
+        <th>Track</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @scrobbles.each do |scrobble| %>
+        <tr>
+          <td>
+            <%= scrobble.timestamp.strftime('%-I:%M%P') %>
+          </td>
+          <td>
+            <%= link_to scrobble.artist, scrobble.artist_url %> — <%= link_to scrobble.track, scrobble.track_url %>
+          </td>
+      <% end %>
+    </tbody>
+  </table>
 <% end %>
-</ul>

@@ -1,0 +1,27 @@
+/* Margin
+   ========================================================================== */
+
+.add-vertical-margins {
+  margin-top: $line-height-computed !important;
+  margin-bottom: $line-height-computed !important;
+}
+
+.add-top-margin {
+  margin-top: $line-height-computed !important;
+}
+
+.add-big-top-margin {
+  margin-top: ($line-height-computed * 3) !important;
+}
+
+.remove-top-margin {
+  margin-top: 0 !important;
+}
+
+.add-bottom-margin {
+  margin-bottom: $line-height-computed !important;
+}
+
+.remove-bottom-margin {
+  margin-bottom: 0 !important;
+}

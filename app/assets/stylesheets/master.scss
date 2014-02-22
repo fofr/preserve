@@ -1,0 +1,20 @@
+p {
+  margin-bottom: $line-height-computed;
+}
+
+.article-text {
+  font-size: 16px;
+  color: #666;
+}
+
+.wrapper {
+  max-width: 780px;
+  padding: 0 40px;
+  margin: 0 auto;
+  @include border-box;
+}
+
+.rating-column,
+.time-column {
+  width: 80px;
+}
