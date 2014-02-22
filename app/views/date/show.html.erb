@@ -1,5 +1,5 @@
 <header class="text-center add-big-top-margin">
-  <h1><%= @date.strftime('%-e %B %Y') %></h1>
+  <h1><%= @date.strftime('%A, %-e %B %Y') %></h1>
   <nav>
     <%= link_to 'Previous', date_path(@date - 1)%> | <%= link_to 'Next', date_path(@date + 1)%>
   </nav>
@@ -33,7 +33,7 @@
       <% @tweets.each do |tweet| %>
         <tr>
           <td>
-            <%= tweet.timestamp.strftime('%-I:%M%P') %>
+            <%= link_to tweet.timestamp.strftime('%-I:%M%P'), tweet.url %>
           </td>
           <td>
             <%= auto_link(tweet.text).html_safe %>
