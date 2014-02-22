@@ -1,14 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html class="no-js" id="preserve">
 <head>
-  <title>Preserve</title>
-  <%= stylesheet_link_tag    "application", media: "all" %>
+  <title><%= yield :page_title %></title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>(function(d){d.className=d.className.replace(/^no-js\b/,'js');}(document.documentElement));</script>
+  <!--[if lt IE 9]><%= javascript_include_tag "html5shiv" %><![endif]-->
+  <%= stylesheet_link_tag "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
-
+  <header class="navbar navbar-default navbar-inverse navbar-static-top" role="banner">
+    <div class="container">
+      <div class="navbar-header">
+        <%= link_to 'Preserve', root_path, :class => 'navbar-brand' %>
+      </div>
+    </div>
+  </header>
+  <% # Include section and main for correct outline %>
+  <section>
+    <main role="main">
+      <%= yield %>
+    </main>
+    <footer class="page-footer">&copy; PR Hayes Ltd</footer>
+  </section>
 </body>
 </html>
