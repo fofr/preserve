@@ -1,7 +1,7 @@
 <header class="text-center add-big-top-margin">
   <h1><%= @date.strftime('%A, %-e %B %Y') %></h1>
   <nav>
-    <%= link_to 'Previous', date_path(@date - 1)%> | <%= link_to 'Next', date_path(@date + 1)%>
+    <%= link_to 'Previous', date_path(@date - 1), data: { keybinding: 'left' } %> | <%= link_to 'Next', date_path(@date + 1), data: { keybinding: 'right' }%>
   </nav>
 </header>
 
