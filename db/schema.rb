@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140224082208) do
+ActiveRecord::Schema.define(version: 20140224091823) do
 
   create_table "activities", force: true do |t|
     t.string   "activity_class"
@@ -54,6 +54,8 @@ ActiveRecord::Schema.define(version: 20140224082208) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "locations", ["timestamp"], name: "location_timestamp_ix", using: :btree
 
   create_table "movies", force: true do |t|
     t.string   "title"
