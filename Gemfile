@@ -10,6 +10,8 @@ gem 'mousetrap-rails', '1.4.6'
 gem 'coffee-rails', '4.0.1'
 gem 'jquery-rails', '3.1.0'
 gem 'exifr', '1.1.3'
+gem 'underscore-rails', '1.5.2'
+gem 'gmaps4rails', '2.1.2'
 
 group :assets do
   gem 'sass-rails', '4.0.1'

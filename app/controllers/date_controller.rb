@@ -18,6 +18,7 @@ class DateController < ApplicationController
     @tweets     = Tweet.where(timestamp: range)
     @journals   = Journal.where(timestamp: range)
     @movies     = Movie.where(timestamp: range)
+    @location   = Location.where(timestamp: range)
 
   end
 

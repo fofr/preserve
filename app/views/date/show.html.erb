@@ -20,6 +20,48 @@
   </section>
 <% end %>
 
+<% if @location.any? %>
+  <h3 class="add-big-top-margin">Location</h3>
+
+  <div style='width: 700px;'>
+    <div id="map" style='width: 700px; height: 400px;'></div>
+  </div>
+  <script src="//maps.google.com/maps/api/js?v=3.13&amp;sensor=false&amp;libraries=geometry"></script>
+  <script src='//google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.14/src/markerclusterer_packed.js'></script>
+  <script>
+  handler = Gmaps.build('Google');
+  handler.buildMap({ internal: {id: 'map'}}, function(){
+    var markers = handler.addMarkers([
+      <% @location.each do |loc| %>
+        <%= "{ lat: #{loc.latitude}, lng: #{loc.longitude} }," %>
+      <% end %>
+    ]);
+    handler.bounds.extendWith(markers);
+    handler.fitMapToBounds();
+  });
+  </script>
+
+  <table class="table table-bordered table-striped add-vertical-margins">
+    <thead>
+      <tr class="active">
+        <th class="time-column">Time</th>
+        <th>Location</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @location.each do |loc| %>
+        <tr>
+          <td>
+            <%= loc.timestamp.strftime('%-I:%M%P') %>
+          </td>
+          <td>
+            <%= "#{loc.latitude}, #{loc.longitude}" %>
+          </td>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+
 <% if @tweets.any? %>
   <h3 class="add-big-top-margin">Tweets</h3>
   <table class="table table-bordered table-striped add-vertical-margins">
