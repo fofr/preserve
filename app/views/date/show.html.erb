@@ -20,7 +20,7 @@
   </section>
 <% end %>
 
-<% if @location.any? %>
+<% if @location.any? || @checkins.any? %>
   <h3 class="add-big-top-margin">Location</h3>
 
   <div style='width: 700px;'>
@@ -35,27 +35,33 @@
       <% @location.each do |loc| %>
         <%= "{ lat: #{loc.latitude}, lng: #{loc.longitude} }," %>
       <% end %>
+      <% @checkins.each do |checkin| %>
+        <%= checkin_location(checkin) %>
+      <% end %>
     ]);
     handler.bounds.extendWith(markers);
     handler.fitMapToBounds();
   });
   </script>
+<% end %>
 
+<% if @checkins.any? %>
+  <h3 class="add-big-top-margin">Checkins</h3>
   <table class="table table-bordered table-striped add-vertical-margins">
     <thead>
       <tr class="active">
         <th class="time-column">Time</th>
-        <th>Location</th>
+        <th>Checkin</th>
       </tr>
     </thead>
     <tbody>
-      <% @location.each do |loc| %>
+      <% @checkins.each do |checkin| %>
         <tr>
           <td>
-            <%= loc.timestamp.strftime('%-I:%M%P') %>
+            <%= checkin.timestamp.strftime('%-I:%M%P') %>
           </td>
           <td>
-            <%= "#{loc.latitude}, #{loc.longitude}" %>
+            <%= link_to checkin.venue, checkin.url %>
           </td>
       <% end %>
     </tbody>
@@ -102,29 +108,6 @@
           </td>
           <td>
             <%= movie.rating %>
-          </td>
-      <% end %>
-    </tbody>
-  </table>
-<% end %>
-
-<% if @checkins.any? %>
-  <h3 class="add-big-top-margin">Checkins</h3>
-  <table class="table table-bordered table-striped add-vertical-margins">
-    <thead>
-      <tr class="active">
-        <th class="time-column">Time</th>
-        <th>Checkin</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @checkins.each do |checkin| %>
-        <tr>
-          <td>
-            <%= checkin.timestamp.strftime('%-I:%M%P') %>
-          </td>
-          <td>
-            <%= link_to checkin.venue, checkin.url %>
           </td>
       <% end %>
     </tbody>
