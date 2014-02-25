@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140225081152) do
+ActiveRecord::Schema.define(version: 20140225184627) do
 
   create_table "activities", force: true do |t|
     t.string   "activity_class"
@@ -20,6 +20,43 @@ ActiveRecord::Schema.define(version: 20140225081152) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "facebook_links", force: true do |t|
+    t.datetime "timestamp"
+    t.string   "title"
+    t.string   "link"
+    t.text     "description"
+    t.text     "message"
+    t.string   "from"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "facebook_links", ["timestamp"], name: "facebook_link_timestamp_ix", using: :btree
+
+  create_table "facebook_statuses", force: true do |t|
+    t.datetime "timestamp"
+    t.text     "message"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "facebook_statuses", ["timestamp"], name: "facebook_status_timestamp_ix", using: :btree
+
+  create_table "flickrs", force: true do |t|
+    t.datetime "timestamp"
+    t.string   "title"
+    t.string   "flickr_url"
+    t.text     "description"
+    t.datetime "taken_timestmap"
+    t.string   "original_source_url"
+    t.string   "source_url"
+    t.string   "tags"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "flickrs", ["timestamp"], name: "flickr_timestamp_ix", using: :btree
 
   create_table "foursquares", force: true do |t|
     t.string   "venue"
@@ -33,6 +70,38 @@ ActiveRecord::Schema.define(version: 20140225081152) do
   end
 
   add_index "foursquares", ["timestamp"], name: "foursquare_timestamp_ix", using: :btree
+
+  create_table "githubs", force: true do |t|
+    t.datetime "timestamp"
+    t.string   "title"
+    t.string   "url"
+    t.string   "author"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "githubs", ["timestamp"], name: "github_timestamp_ix", using: :btree
+
+  create_table "headlines", force: true do |t|
+    t.datetime "timestamp"
+    t.string   "headline"
+    t.string   "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "headlines", ["timestamp"], name: "headline_timestamp_ix", using: :btree
+
+  create_table "instagrams", force: true do |t|
+    t.datetime "timestamp"
+    t.string   "url"
+    t.string   "source_url"
+    t.text     "caption"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "instagrams", ["timestamp"], name: "instagram_timestamp_ix", using: :btree
 
   create_table "journals", force: true do |t|
     t.text     "text"
@@ -80,6 +149,19 @@ ActiveRecord::Schema.define(version: 20140225081152) do
 
   add_index "purchases", ["timestamp"], name: "purchase_timestamp_ix", using: :btree
 
+  create_table "reminders", force: true do |t|
+    t.datetime "timestamp"
+    t.datetime "created_timestamp"
+    t.string   "title"
+    t.string   "notes"
+    t.string   "priority"
+    t.string   "list"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "reminders", ["timestamp"], name: "reminder_timestamp_ix", using: :btree
+
   create_table "scrobbles", force: true do |t|
     t.datetime "timestamp"
     t.string   "track"
@@ -112,5 +194,37 @@ ActiveRecord::Schema.define(version: 20140225081152) do
   end
 
   add_index "tweets", ["timestamp"], name: "tweets_timestamp_ix", using: :btree
+
+  create_table "weathers", force: true do |t|
+    t.datetime "timestamp"
+    t.string   "todays_condition"
+    t.string   "high_temp_celsius"
+    t.string   "low_temp_celsius"
+    t.string   "current_temp_celsius"
+    t.string   "current_condition"
+    t.string   "wind_speed_mph"
+    t.string   "wind_direction"
+    t.string   "pollen_count"
+    t.string   "uv_index"
+    t.string   "humidity"
+    t.datetime "sunrise"
+    t.datetime "sunset"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "weathers", ["timestamp"], name: "weather_timestamp_ix", using: :btree
+
+  create_table "weights", force: true do |t|
+    t.datetime "timestamp"
+    t.string   "weight_kg"
+    t.string   "lean_mass_kg"
+    t.string   "fat_mass_kg"
+    t.string   "fat_percent"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "weights", ["timestamp"], name: "weight_timestamp_ix", using: :btree
 
 end
