@@ -19,6 +19,7 @@ class DateController < ApplicationController
     @journals   = Journal.where(timestamp: range)
     @movies     = Movie.where(timestamp: range)
     @location   = Location.where(timestamp: range)
+    @purchases  = Purchase.where(timestamp: range)
 
   end
 

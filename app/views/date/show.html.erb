@@ -114,6 +114,35 @@
   </table>
 <% end %>
 
+<% if @purchases.any? %>
+  <h3 class="add-big-top-margin">Purchases</h3>
+  <table class="table table-bordered table-striped add-vertical-margins">
+    <thead>
+      <tr class="active">
+        <th>Purchase</th>
+        <th class="time-column">Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @purchases.each do |purchase| %>
+        <tr>
+          <td>
+            <%= "#{purchase.name}#{" (#{purchase.description})" if purchase.description}" %>
+          </td>
+          <td>
+            <%= "£#{purchase.amount}" %>
+          </td>
+      <% end %>
+    </tbody>
+    <tfoot>
+      <tr class="active">
+        <th class="text-right">Total</th>
+        <th class="time-column"><%= "£#{"%.2f" % @purchases.inject(0) {|sum, hash| sum + hash[:amount].to_f}.to_s}"%></th>
+      </tr>
+    </tfoot>
+  </table>
+<% end %>
+
 <% if @scrobbles.any? %>
   <h3 class="add-big-top-margin">Scrobbles</h3>
   <table class="table table-bordered table-striped add-vertical-margins">

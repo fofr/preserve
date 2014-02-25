@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140224091823) do
+ActiveRecord::Schema.define(version: 20140225081152) do
 
   create_table "activities", force: true do |t|
     t.string   "activity_class"
@@ -68,6 +68,17 @@ ActiveRecord::Schema.define(version: 20140224091823) do
   end
 
   add_index "movies", ["timestamp"], name: "movies_timestamp_ix", using: :btree
+
+  create_table "purchases", force: true do |t|
+    t.string   "amount"
+    t.string   "name"
+    t.string   "description"
+    t.datetime "timestamp"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "purchases", ["timestamp"], name: "purchase_timestamp_ix", using: :btree
 
   create_table "scrobbles", force: true do |t|
     t.datetime "timestamp"
