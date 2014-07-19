@@ -4,6 +4,7 @@ namespace :import do
   task :purchases => :environment do
 
     purchases = []
+    count = 0
     files = Dir.glob('data/purchases/*.csv')
 
     files.each do |file|
@@ -16,9 +17,11 @@ namespace :import do
           :name                        => name_and_description[0],
           :description                 => name_and_description[1]
         )
+        count = count + 1
       end
     end
 
-    Purchase.import purchases
+    output = Purchase.import purchases
+    puts "Purchases: Found #{count}, created #{count - output[:failed_instances].size}"
   end
 end
